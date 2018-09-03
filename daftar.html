@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>REGISTRATION</title>
+	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+	<link href="css/main-responsive.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid pad-b-40px">
+	<div class="row p-x-10">
+		<div class="container register-container border-radius-5px mar-t-20px">
+			<fieldset >
+				<legend class="form-title">WELCOME <span class="color-secondTheme">FRESHMEN</span></legend>
+				<form class="form" method="post">
+				<div class="row">
+					<div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Full Name</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="text" placeholder="Jo Vianto"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Email</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="text" placeholder="example@domain.com"/>
+					</div>
+				</div>
+				<div class="row">
+				  <div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Password</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="password" placeholder="Password"/>
+					</div>
+				</div>
+				<div class="row">
+				  <div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Verify Password</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="password" placeholder="Re-Password"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Study Program</label><span class="validity"></span>
+						<select class="full-width">
+							<option>Teknik Informatika</option>
+							<option>Teknik Industri</option>
+							<option>TIKI</option>
+							<option>Sistem Informasi</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+				  <div class="col-xl-12">
+					<label class="color-lightTheme"><span class="color-red">*</span> NPM</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="tel" placeholder="123456789" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Phone</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="text" placeholder="00123"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<label class="color-lightTheme"><span class="color-red">*</span> Born Place</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="text" placeholder="Yogyakarta"/>
+					</div>
+				</div>
+					<div class="row">
+					<div class="col-xl-12">
+					  <label class="color-lightTheme"><span class="color-red">*</span> Birth Day</label><span class="validity"></span>
+						<input class="placeholder-lightTheme" type="date" id="datePicker"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<label class="color-lightTheme">Message</label>
+						<textarea cols="40" rows="5" placeholder="Your Message"></textarea>
+						<p class="color-lightTheme"><span class="color-red">*</span> Required Field</p>
+						<input class="full-width" type="submit" value="Register"/>
+					</div>
+				</div>
+		  </form>
+			</fieldset>				
+	  	</div>
+		<div class="container login-container border-radius-5px mar-t-20px">
+			<fieldset >
+				<legend class="form-title">SIGNIN DASHBOARD <span class="color-secondTheme">KSR</span></legend>
+				<form class="form" method="post">
+					<div class="row">
+						<div class="col-xl-12">
+							<label class="color-lightTheme"><span class="color-red">*</span> Email</label><span class="validity"></span>
+							<input class="placeholder-lightTheme" type="text" placeholder="example@domain.com"/>
+						</div>
+					</div>
+					<div class="row">
+					<div class="col-xl-12">
+							<label class="color-lightTheme"><span class="color-red">*</span> Password</label><span class="validity"></span>
+							<input class="placeholder-lightTheme" type="password" placeholder="Password"/>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-xl-12">
+							<input class="full-width bg-color-darkorange mar-t-40px" type="submit" value="Login"/>
+						</div>
+					</div>
+				</form>
+			</fieldset>				
+	 	</div>
+	</div>
+	<div class="row footer">
+		<div class="col-xl-12"></div>
+		
+	</div>
+</div>
+	<!-- DEFAULT UI SUPPORT USING JS -->
+	<script>
+		document.getElementById('datePicker').valueAsDate = new Date();
+	</script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/popper.min.js"></script> 
+	<script src="js/bootstrap-4.0.0.js"></script>
+</body>
+</html>

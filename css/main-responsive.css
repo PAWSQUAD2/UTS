@@ -1,0 +1,341 @@
+@charset "utf-8";
+/* CSS Document */
+
+.mNav{
+	background-color: #002836 !important;
+}
+body{
+    background: url("../images/bg.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* IE */
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg.jpg', sizingMethod='scale')";
+}
+label{
+    display: block;
+}
+.carousel{
+	width: 100%;
+}
+.mNav .nav-item a{
+	color: white !important;
+}
+.mNav .navbar-brand{
+	margin-left: 10%;
+	color: white;
+	font-weight: bolder ;
+}
+.body{
+	padding: 0 10%;
+	background-color: #74B4CB;
+}
+.row.top{
+	padding:0;
+}
+
+.color-secondTheme{
+	color: #426E7E;
+}
+.color-lightTheme{
+	color:aliceblue;
+}
+.color-darkTheme{
+    color: #002836;
+}
+.color-red{
+	color:red;
+}
+.bg-color-darkorange{
+	background-color: rgb(231, 92, 0) !important;
+}
+.border-radius-10px{
+	border-radius: 10px;
+}
+
+.border-radius-5px{
+	border-radius: 5px;
+}
+.no-border{
+    border: none !important;
+}
+
+.full-width{
+	width: 100%;
+}
+.p-x-5{
+    padding:0 5%;
+}
+.p-x-10{
+    padding:0 10%;
+}
+.pad-t-40px{
+    padding-top: 40px;
+}
+.pad-t-60px{
+    padding-top: 60px;
+}
+.pad-b-40px{
+    padding-bottom: 40px;
+}
+
+.mar-t-20px{
+    margin-top: 20px;
+}
+.mar-t-40px{
+    margin-top: 40px;
+}
+
+.no-padding{
+    padding: 0 !important;
+}
+.inline-display{
+    display: inline !important;
+}
+.register-container{
+    display: inline-block;
+    min-width: 400px;
+    max-width: 100%;
+    width: 500px;
+    padding: 40px;
+	/*background-color: #002836;*/
+	background-color: #0000003b;
+}
+.profile-container{
+    display: inline-block;
+    min-width: 400px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    /*background-color: #002836;*/
+	background-color: #000000a2;
+}
+.profile-header-container{
+    position: relative;
+    display: block;
+    background-color: white;
+    width: 90% !important;
+    top: -150px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.media-social-container{
+    position: relative;
+    width: 90% !important;
+    margin: 0 auto;
+    top: -150px;
+    padding: 0 25%;
+    background-color: #E2584B;
+}
+.h1{
+    font-size: 40px;
+}
+.weight-300{
+    font-weight: 300;
+}
+.bold-600{
+    font-weight: 600;
+}
+.speech-icon{
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-image:url('../images/speech-icon.svg');
+    background-position: 0 0;
+    background-repeat: no-repeat; 
+    background-size: 80px 40px; 
+    
+}
+.color1{
+    height: 100%;
+    background-color: #002836 !important;
+    margin: auto;
+}
+.color2{
+    height: 100%;
+    background-color: #26b72b !important;
+}
+.color3{
+    height: 100%;
+    background-color: #74B4CB !important;
+}
+.absolute-ppbg{
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+.sampul{
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top:-700px;
+}
+.login-container{
+    display: inline-block;
+    min-width: 400px;
+    max-width: 100%;
+    width: 500px;
+    height: 400px;
+    padding: 40px;
+	/*background-color: #002836;*/
+	background-color: #0000003b;
+}
+.form-title{
+	width: 100%;
+    font-weight: bold;
+    text-align: center;
+	padding-bottom: 20px;
+	color: aliceblue;
+	border-bottom: 1px  solid  rgb(202, 202, 202);
+}
+
+.photo-profile{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    overflow: hidden;
+}
+.photo-profile img{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+.profile-data{
+    min-width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+/*DEFAULT THEME OF INPUT TAG*/
+input[type="text"], input[type="password"],
+input[type="tel"], input[type="date"]{
+    color: white;
+    padding: 0 8px;
+    width: 100%;
+    font-weight: 200;
+    height: 35px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 1pt solid rgb(202, 202, 202);
+    border-radius: 3px;
+}
+input[type="text"]:hover, input[type="password"]:hover,
+input[type="tel"]:hover, input[type="date"]:hover{
+    border-color: #2756ad;
+}
+input[type="text"]:focus, input[type="password"]:focus,
+input[type="tel"]:focus,  input[type="date"]:focus{
+    border-color: #9ecaed;
+    box-shadow: 0 0 5px #9ecaed;
+}
+
+input[type="date"]::-webkit{
+    -webkit-appearance: none;
+    display: none;
+    color: red;
+}
+
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #2c3e50;
+}
+
+input[type="tel"]::-webkit-outer-spin-button, input[type="tel"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="tel"] {
+    -moz-appearance: textfield;
+}
+input[type="radio"] {
+    font-weight: 200;
+}
+textarea{
+    resize: none;
+	width: 100%;
+    padding: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 3px;
+}
+
+textarea:hover{
+    border-color: #2756ad;
+}
+textarea:focus{
+    border-color: #8594af;
+}
+
+textarea {
+    font-weight: 200;
+    
+}
+
+input[type="submit"]{
+    display: block;
+    font-weight: 600;
+    height: 40px;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    background-color: #2756ad;
+    color: #f2f2f2;
+    cursor:pointer;
+}
+
+select{
+    padding: 0 5px;
+    width: 300px;
+    font-weight: 200;
+    height: 35px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 3px;
+}
+select option{
+    color: black;
+}
+
+select:hover{
+    border-color: #2756ad;
+}
+select:focus{
+    border-color: #8594af;
+}
+
+
+input:invalid + span:before {
+    content: '✖';
+    color: #f00;
+    padding-left: 5px;
+}
+
+input:valid + span:before {
+    content: '✓';
+    color: #26b72b;
+    padding-left: 5px;
+}
+
+.placeholder-lightTheme::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #ffffff8a;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: red;
+}
+
+/*END OF DEFAULT THEME OF INPUPT TAG*/
+
