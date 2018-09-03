@@ -1,0 +1,15 @@
+.card-view{
+    border: solid 2px #cccccc; 
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.heder-card-view{
+    text-align: center;
+
+}
+
+.content-card-view{
+    text-align: center;
+}
