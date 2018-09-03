@@ -13,3 +13,67 @@
 .content-card-view{
     text-align: center;
 }
+
+.al-padding-32{
+    padding-top: 32px
+    !important;
+    padding-bottom: 32px
+    !important
+}
+.al-padding-bootom{
+    border-bottom: 1px
+    solid
+    #ccc
+    !important
+}
+.al-border-ligth-grey{
+    border-color: #f1f1f1
+    !important
+}
+.al-padding-16{
+    padding-top: 16px
+    !important;
+    padding-bottom: 16px
+    !important
+}
+.al-row-padding{
+    padding: 0 10px
+}
+.al-col{
+    padding: 0 10px
+}
+.al{
+    width: 24.9999%
+}
+.al-m{
+    width: 33.33333%
+}
+.al-margin-bottom{
+    margin-bottom: 16px 
+    !important
+}
+.al-display-container{
+    position: relative
+}
+.al-display-topleft{
+    position: absolute;
+    left: 0;
+    top: 0
+}
+.al-black{
+    color: #ffffff
+    !important;
+    background-color: #000000
+    !important;
+}
+.al-padding{
+    padding: 8px 16px
+    !important
+}
+.al-panel{
+    padding: 0.01em 16px
+}
+.al-content{
+    max-width:980px;
+    margin:auto
+}
