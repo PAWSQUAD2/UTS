@@ -374,5 +374,7 @@ input:valid + span:before {
        outline-color: invert;
        background-color: lightgray;
  }
+
+ 
 /*END OF DEFAULT THEME OF INPUPT TAG*/
 
