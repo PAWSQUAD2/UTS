@@ -43,7 +43,7 @@ label{
 	color:aliceblue;
 }
 .color-darkTheme{
-    color: #002836;
+    color: #002836 !important;
 }
 .color-red{
 	color:red;
@@ -230,6 +230,7 @@ label{
     width: 400px;
     height: 450px;
     overflow: hidden;
+    border: 2px solid #cfcfcf80;
 }
 .photo-profile img{
     width: 100%;
