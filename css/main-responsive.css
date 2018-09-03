@@ -369,5 +369,10 @@ input:valid + span:before {
     color: red;
 }
 
+#box{
+       border: 1px solid gray;
+       outline-color: invert;
+       background-color: lightgray;
+ }
 /*END OF DEFAULT THEME OF INPUPT TAG*/
 
