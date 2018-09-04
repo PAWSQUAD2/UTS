@@ -243,6 +243,27 @@ label{
     overflow: hidden;
 }
 
+.emblem{
+    
+}
+.emblem .logo{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #002836;
+    margin-left: auto;
+    margin-right: auto;
+}
+.emblem .logo img{
+    display: block;
+    margin-left: -20px;
+    margin-right: auto;
+    height: 120px;
+}
+.emblem .caption{
+    text-align: center;
+}
 /*DEFAULT THEME OF INPUT TAG*/
 input[type="text"], input[type="password"],
 input[type="tel"], input[type="date"]{
