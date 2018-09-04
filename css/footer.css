@@ -61,5 +61,6 @@
 }
 
 .split{
+	align-items: center;
 	border-color: #cccccc7a;
 }
