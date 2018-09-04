@@ -21,7 +21,7 @@
     !important
 }
 .al-padding-bootom{
-    border-bottom: 1px
+    border-bottom: 2px
     solid
     #ccc
     !important
@@ -76,4 +76,21 @@
 .al-content{
     max-width:980px;
     margin:auto
+}
+
+.container1 {
+    height:100px;
+    width:100%;
+}
+.coulum1 {
+    height:100px;
+    width:20%;
+    background-color:grey;
+    float:left;
+}
+.column2 {
+    height:100px;
+    width:80%;
+    background-color:red;
+    float:right;     
 }
