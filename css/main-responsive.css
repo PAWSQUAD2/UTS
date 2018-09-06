@@ -485,7 +485,7 @@ input:valid + span:before {
 .carousel-inner .carousel-item img{
     position: relative;
     min-height: 100%;
-    top:-300px;
+    top:-50px;
     width: 100%;
 }
 /* profile here */

@@ -114,6 +114,8 @@
     top: 0;
 }
 .al-caption{
+    height: 200px;
+    text-overflow: ellipsis;
 }
 .al-black{
     color: #ffffff
