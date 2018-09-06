@@ -182,12 +182,24 @@ label{
     margin-top: 100px;
 }
 .visi{
-    height: 200px;
+    padding-left: 10%;
+    padding-right: 5%;
+    padding-top: 30px;
+    height: 258px;
     background-color: #002836;
+    text-align: center;
+    overflow: auto;
+    overflow-x: hidden;
 }
+
 .misi{
-    height: 200px;
-    background-color: aliceblue;
+    padding-left: 5%;
+    padding-right: 10%;
+    padding-top: 30px;
+    display: table-cell;
+    height: 258px;
+    background-color: white;
+    text-align: center;
 }
 .tentang{
     height: 200px;
@@ -297,6 +309,7 @@ label{
     text-align: center;
     font-weight: bold;
     padding: 8px;
+    padding-bottom: 40px;
     border-bottom: 1px solid #002836;
 }
 /*DEFAULT THEME OF INPUT TAG*/
@@ -450,9 +463,33 @@ input:valid + span:before {
     margin: auto 10px auto 10px;
     font-size: 18px;
 }
+.about-container{
+    padding-top: 40px;
+    margin: auto 0;
 
+    width: 100%;
+    background-color: #fff;
+}
+.clear-margin{
+    margin: 0 !important;
+}
+.grid{
+    background-image: url("../images/grid.png");
+}
+#myCaraousel{
+    height: 700px;
+}
+.carousel-item{
+    height: 700px;
+}
+.carousel-inner .carousel-item img{
+    position: relative;
+    min-height: 100%;
+    top:-300px;
+    width: 100%;
+}
 /* profile here */
-.fab{
+.fab#profile{
     text-align: center;
     color: aliceblue;
     margin: 0 auto;
