@@ -85,7 +85,9 @@
     !important
 }
 .al-row-padding{
-    padding: 0 10px
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
 }
 .al-col{
     padding: 0 10px
@@ -101,12 +103,17 @@
     !important
 }
 .al-display-container{
-    position: relative
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
 }
 .al-display-topleft{
     position: absolute;
     left: 0;
-    top: 0
+    top: 0;
+}
+.al-caption{
 }
 .al-black{
     color: #ffffff
@@ -141,4 +148,100 @@
     width:80%;
     background-color:red;
     float:right;     
+}
+.al-col1{
+    float: left;
+    width: 100%
+}
+.m6{
+    widows: 49.99999%
+}
+.al-padding-large{
+    padding: 12px 24px
+    !important
+}
+.al-center{
+    display: inline-block;
+    width: auto;
+}
+
+.al-content-image{
+    text-align: justify;
+    
+}
+.al-content-text{
+    float:right;
+}
+.al-row-content{
+    content: "";
+    display: table;
+    clear: both;
+}
+.al-padding-64{
+    padding-top: 64px
+    !important;
+    padding-bottom: 64px
+    !important;
+}
+.al-col-2{
+    float: left;
+    width: 100%
+}
+.al-hide-small{
+    display: none
+    !important
+}
+.al-round{
+    border-radius: 4px
+}
+.al-image{
+    max-width: 100%;
+    height: auto;
+}
+
+
+.ald-content{
+    max-width:980px;margin:auto
+}
+.ald-rest{
+    overflow:hidden
+}
+.ald-col{
+    padding:0 8px
+}
+.ald-padding-64{
+    padding-top:64px!important;
+    padding-bottom:64px!important
+}
+.ald-col{
+    float:left;width:100%
+}
+.ald-col.m6,.ald-half{
+    width:49.99999%
+}
+.ald-padding-large{
+    padding:12px 24px!important
+}
+.ald-hide-small{
+    display:none!important
+}
+.ald-round-small{
+    border-radius:2px
+}
+.ald-round{
+    border-radius:4px
+}
+.ald-image{
+    max-width:100%;height:auto
+}img{
+    vertical-align:middle}a{color:inherit
+}
+.ald-opacity-min{
+    opacity:0.75
+}
+.ald-centered tr th,.ald-centered tr td{
+    text-align:center
+}
+ald-large{
+    font-size:18px!important
 }
