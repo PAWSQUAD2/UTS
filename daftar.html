@@ -7,6 +7,7 @@
 	<link href="css/main-responsive.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	<link href="css/footer.css" rel="stylesheet">
+	<script src="js/textValidation.js"></script>
 </head>
 
 <body>
@@ -45,34 +46,38 @@
 		<div class="container register-container border-radius-5px mar-t-20px">
 			<fieldset >
 				<legend class="form-title">WELCOME <span class="color-secondTheme">FRESHMEN</span></legend>
-				<form class="form" method="post">
+				<form class="form registration" method="post">
 				<div class="row">
 					<div class="col-xl-12">
-						<label class="color-lightTheme"><span class="color-red">*</span> Full Name</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="text" placeholder="Jo Vianto"/>
+						<label class="color-lightTheme"><span class="color-red">*</span> Full Name</label>
+						<input class="placeholder-lightTheme" type="text" placeholder="Jo Vianto" required onkeyup="inputValidation('name','name','name_er')" id="name" maxlength="30"/>
+						<span class="validity"><span id="name_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12">
-						<label class="color-lightTheme"><span class="color-red">*</span> Email</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="text" placeholder="example@domain.com"/>
+						<label class="color-lightTheme"><span class="color-red">*</span> Email</label>
+						<input class="placeholder-lightTheme" type="text" required onkeyup="inputValidation('email','email','email_er')" placeholder="example@domain.com" id="email" maxlength="50"/>
+						<span class="validity"><span id="email_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 				  <div class="col-xl-12">
-						<label class="color-lightTheme"><span class="color-red">*</span> Password</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="password" placeholder="Password"/>
+						<label class="color-lightTheme"><span class="color-red">*</span> Password</label>
+						<input class="placeholder-lightTheme" type="password" placeholder="Password" required onkeyup="inputValidation('pass','pass','pass_er')" placeholder="example@domain.com" id="pass" maxlength="25" minlength="6"/>
+						<span class="validity"><span id="pass_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 				  <div class="col-xl-12">
-						<label class="color-lightTheme"><span class="color-red">*</span> Verify Password</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="password" placeholder="Re-Password"/>
+						<label class="color-lightTheme"><span class="color-red">*</span> Verify Password</label>
+						<input class="placeholder-lightTheme" type="password" placeholder="Re-Password" required onkeyup="rePassValidation('pass', 'repass', 'rePass_er')" id="repass"/>
+						<span class="validity"><span id="rePass_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12">
-						<label class="color-lightTheme"><span class="color-red">*</span> Study Program</label><span class="validity"></span>
+						<label class="color-lightTheme"><span class="color-red">*</span> Study Program</label>
 						<select class="full-width">
 							<option>Teknik Informatika</option>
 							<option>Teknik Industri</option>
@@ -83,14 +88,16 @@
 				</div>
 				<div class="row">
 				  <div class="col-xl-12">
-					<label class="color-lightTheme"><span class="color-red">*</span> NPM</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="tel" placeholder="123456789" autocomplete="off"/>
+					<label class="color-lightTheme"><span class="color-red">*</span> NPM</label>
+						<input class="placeholder-lightTheme" type="tel" placeholder="123456789" required onkeyup="inputValidation('npm', 'npm', 'npm_er')" id="npm"/>
+						<span class="validity"><span id="npm_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12">
-						<label class="color-lightTheme"><span class="color-red">*</span> Phone</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="text" placeholder="00123"/>
+						<label class="color-lightTheme"><span class="color-red">*</span> Phone</label>
+						<input class="placeholder-lightTheme" type="text" placeholder="00123" required onkeyup="inputValidation('number', 'phone', 'phone_er')" id="phone"/>
+						<span class="validity"><span id="phone_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
@@ -103,17 +110,10 @@
 					<div class="col-xl-12">
 					  <label class="color-lightTheme"><span class="color-red">*</span> Birth Day</label><span class="validity"></span>
 						<input class="placeholder-lightTheme" type="date" id="datePicker"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xl-12">
-						<label class="color-lightTheme">Message</label>
-						<textarea cols="40" rows="5" placeholder="Your Message"></textarea>
-						<p class="color-lightTheme"><span class="color-red">*</span> Required Field</p>
 						<input class="full-width" type="submit" value="Register"/>
 					</div>
 				</div>
-		  </form>
+		  	</form>
 			</fieldset>				
 	  	</div>
 		<div class="container login-container border-radius-5px mar-t-20px">
@@ -123,13 +123,13 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<label class="color-lightTheme"><span class="color-red">*</span> Email</label><span class="validity"></span>
-							<input class="placeholder-lightTheme" type="text" placeholder="example@domain.com"/>
+							<input class="placeholder-lightTheme" type="text" placeholder="example@domain.com" required/>
 						</div>
 					</div>
 					<div class="row">
 					<div class="col-xl-12">
 							<label class="color-lightTheme"><span class="color-red">*</span> Password</label><span class="validity"></span>
-							<input class="placeholder-lightTheme" type="password" placeholder="Password"/>
+							<input class="placeholder-lightTheme" type="password" placeholder="********" required/>
 						</div>
 					</div>
 					
