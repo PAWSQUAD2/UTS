@@ -49,3 +49,6 @@ function rePassValidation(id1, id2, errId) {
         document.getElementById(errId).innerHTML = "";
     }
 }
+function setFailLogin(id){
+    document.getElementById("fail-login").style.visibility="visible";
+}

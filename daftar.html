@@ -46,25 +46,25 @@
 		<div class="container register-container border-radius-5px mar-t-20px">
 			<fieldset >
 				<legend class="form-title">WELCOME <span class="color-secondTheme">FRESHMEN</span></legend>
-				<form class="form registration" method="post">
+				<form class="form registration" method="post" action="daftar_action.php">
 				<div class="row">
 					<div class="col-xl-12">
 						<label class="color-lightTheme"><span class="color-red">*</span> Full Name</label>
-						<input class="placeholder-lightTheme" type="text" placeholder="Jo Vianto" required onkeyup="inputValidation('name','name','name_er')" id="name" maxlength="30"/>
+						<input class="placeholder-lightTheme" name="name" type="text" placeholder="Jo Vianto" required onkeyup="inputValidation('name','name','name_er')" id="name" maxlength="30"/>
 						<span class="validity"><span id="name_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12">
 						<label class="color-lightTheme"><span class="color-red">*</span> Email</label>
-						<input class="placeholder-lightTheme" type="text" required onkeyup="inputValidation('email','email','email_er')" placeholder="example@domain.com" id="email" maxlength="50"/>
+						<input class="placeholder-lightTheme" name="email" type="text" required onkeyup="inputValidation('email','email','email_er')" placeholder="example@domain.com" id="email" maxlength="50"/>
 						<span class="validity"><span id="email_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 				  <div class="col-xl-12">
 						<label class="color-lightTheme"><span class="color-red">*</span> Password</label>
-						<input class="placeholder-lightTheme" type="password" placeholder="Password" required onkeyup="inputValidation('pass','pass','pass_er')" placeholder="example@domain.com" id="pass" maxlength="25" minlength="6"/>
+						<input class="placeholder-lightTheme" name="pass" type="password" placeholder="Password" required onkeyup="inputValidation('pass','pass','pass_er')" placeholder="example@domain.com" id="pass" maxlength="25" minlength="6"/>
 						<span class="validity"><span id="pass_er"></span></span>
 					</div>
 				</div>
@@ -78,39 +78,39 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<label class="color-lightTheme"><span class="color-red">*</span> Study Program</label>
-						<select class="full-width">
-							<option>Teknik Informatika</option>
-							<option>Teknik Industri</option>
-							<option>TIKI</option>
-							<option>Sistem Informasi</option>
+						<select class="full-width" name="jurusan">
+							<option  value="Teknik Informatika">Teknik Informatika</option>
+							<option value="Teknik Industri">Teknik Industri</option>
+							<option value="TIKI">TIKI</option>
+							<option value="Sistem Informasi">Sistem Informasi</option>
 						</select>
 					</div>
 				</div>
 				<div class="row">
 				  <div class="col-xl-12">
 					<label class="color-lightTheme"><span class="color-red">*</span> NPM</label>
-						<input class="placeholder-lightTheme" type="tel" placeholder="123456789" required onkeyup="inputValidation('npm', 'npm', 'npm_er')" id="npm"/>
+						<input class="placeholder-lightTheme" name="npm" type="tel" placeholder="123456789" required onkeyup="inputValidation('npm', 'npm', 'npm_er')" id="npm"/>
 						<span class="validity"><span id="npm_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12">
 						<label class="color-lightTheme"><span class="color-red">*</span> Phone</label>
-						<input class="placeholder-lightTheme" type="text" placeholder="00123" required onkeyup="inputValidation('number', 'phone', 'phone_er')" id="phone"/>
+						<input class="placeholder-lightTheme" name="phone" type="text" placeholder="00123" required onkeyup="inputValidation('number', 'phone', 'phone_er')" id="phone"/>
 						<span class="validity"><span id="phone_er"></span></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12">
 						<label class="color-lightTheme"><span class="color-red">*</span> Born Place</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="text" placeholder="Yogyakarta"/>
+						<input class="placeholder-lightTheme" name="bornPlace" type="text" placeholder="Yogyakarta"/>
 					</div>
 				</div>
 					<div class="row">
 					<div class="col-xl-12">
 					  <label class="color-lightTheme"><span class="color-red">*</span> Birth Day</label><span class="validity"></span>
-						<input class="placeholder-lightTheme" type="date" id="datePicker"/>
-						<input class="full-width" type="submit" value="Register"/>
+						<input class="placeholder-lightTheme" name="birthDay" type="date" id="datePicker"/>
+						<input class="full-width" type="submit" value="Register" name="register"/>
 					</div>
 				</div>
 		  	</form>
@@ -119,23 +119,29 @@
 		<div class="container login-container border-radius-5px mar-t-20px">
 			<fieldset >
 				<legend class="form-title">SIGNIN DASHBOARD <span class="color-secondTheme">KSR</span></legend>
-				<form class="form" method="post">
+				<iframe name="hidden-frame" width="0" height="0" border="0" style="display: none;"></iframe>
+				<form class="form" method="post" action="auth.php" target="hidden-frame">
 					<div class="row">
 						<div class="col-xl-12">
 							<label class="color-lightTheme"><span class="color-red">*</span> Email</label><span class="validity"></span>
-							<input class="placeholder-lightTheme" type="text" placeholder="example@domain.com" required/>
+							<input class="placeholder-lightTheme" name="email" type="text" placeholder="example@domain.com" required/>
 						</div>
 					</div>
 					<div class="row">
 					<div class="col-xl-12">
 							<label class="color-lightTheme"><span class="color-red">*</span> Password</label><span class="validity"></span>
-							<input class="placeholder-lightTheme" type="password" placeholder="********" required/>
+							<input class="placeholder-lightTheme" name="pass" type="password" placeholder="********" required/>
 						</div>
 					</div>
-					
+					<div class="row fail-login">
+						<div class="col-xl-12" >
+							<p class="align-center color-lightTheme" id="fail-login">Gagal Masuk! Email/Password Anda Salah.</p>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-xl-12">
-							<input class="full-width bg-color-darkorange mar-t-40px" type="submit" value="Login"/>
+							
+							<input class="full-width bg-color-darkorange" type="submit" value="Login" name="login"/>
 						</div>
 					</div>
 				</form>
