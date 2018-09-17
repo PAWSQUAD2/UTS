@@ -36,7 +36,6 @@
 
 .editor, .editor:hover, .editor:active{
     border: none;
-    
     height: 500px;
     border: 1px solid gainsboro;
     border-radius: 10px;

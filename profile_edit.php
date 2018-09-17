@@ -2,14 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>PROFIL - </title>
+<title id="title">PROFIL - </title>
 	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
 	<link href="css/main-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="css/footer.css" rel="stylesheet">
+    <script src="js/textValidation.js"></script>
     <?php
         include_once 'session.php';
         session_init(true);
+        echo '<script>document.getElementById("title").innerHTML +="'.$_SESSION['user']->name.'";</script>'
     ?>
 </head>
 
@@ -58,57 +60,77 @@
                                 <img src="images/pp.png" alt="pp">
                             </div>
                             <div class="col profile-data" >
+                                <form method="post" action="profile_edit_action.php">
                                 <?php
                                     include_once 'koneksi.php';
                                     include_once 'user.php';
-                                    $user;
-                                    if(isset($_GET['uid'])){
-                                        $uid = $_GET['uid'];
-                                        $user = User::getUser($uid);
-                                    }else{
-                                        $user = $_SESSION['user'];
-                                    }
+                                    $user = $_SESSION['user'];
+                                    // if(isset($_GET['uid'])){
+                                    //     $uid = $_GET['uid'];
+                                    //     $user = User::getUser($uid);
+                                    // }else{
+                                        
+                                    // }
+                                    // if($user==null){
+                                    //     echo'';
+                                    //     exit();
+                                    // }
                                     echo '<div class="speech-icon">Hello</div>
                                 <div class="row  mar-t-20px">
-                                    <label class="col-md-auto color-darkTheme h1 weight-300">Iam <span class="bold-600">'.$user->name.'</span></label><input type="submit" value="Edit" style="margin-left: 200px" onclick="window.location='."'profile_edit.php'".';"><br>
+                                    <label class="col-md-auto color-darkTheme h1 weight-300 no-block"style="width:200px;">Iam </label><input type="text" name="name" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->name.'" style="width:300px; margin:auto 15px; font-weight:600" required onkeyup="inputValidation('."'name'".', '."'name'".', '."'name_er'".')" id="name" maxlength="30">
+                                    <span class="col-md-auto validity" style="margin:auto 0;"></span>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-auto color-darkTheme weight-300">As : '.$user->role.'</label><br>
                                 </div>
                                 <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">
                                 <div class="row">
-                                    <label class="col-md-auto color-darkTheme ">E-MAIL</label> <label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: '.$user->email.'</label>
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">E-MAIL</label><input type="text" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->email.'" style="width:300px; margin:auto 15px; font-weight:600" readonly>
                                 </div><br>
                                 
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">PROGRAM STUDI  </label><label class="col-md-auto color-secondTheme weight-300">: '.$user->prody.'</label>
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">PROGRAM STUDI  </label><input type="text" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->prody.'" style="width:300px; margin:auto 15px; font-weight:600" readonly>
                                 </div><br>
                             
                                  <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">NPM </label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: '.$user->npm.'</label>
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">NPM </label><input type="text" name="npm" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->npm.'" style="width:300px; margin:auto 15px; font-weight:600" required onkeyup="inputValidation('."'npm'".', '."'npm'".', '."'npm_er'".')" id="npm">
+                                    <span class="col-md-auto validity"></span>
                                 </div><br>
                           
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">TELEPON </label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: '.$user->phone.'</label>
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">TELEPON </label><input type="text" name="phone" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->phone.'" style="width:300px; margin:auto 15px; font-weight:600" required onkeyup="inputValidation('."'number'".', '."'phone'".', '."'phone_er'".')" id="phone">
+                                    <span class="col-md-auto validity"></span>
                                 </div><br>
                            
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">TEMPAT LAHIR</label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;: '.$user->bornplace.'</label>
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">TEMPAT LAHIR</label><input type="text" name="bornPlace" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->bornplace.'" style="width:300px; margin:auto 15px; font-weight:600">
                                 </div><br>
                            
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">TANGGAL LAHIR</label><label class="col-md-auto color-secondTheme weight-300">&ensp;: '.$user->birthday.'</label>
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">TANGGAL LAHIR</label><input type="date" name="birthDay" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->birthday.'" style="width:300px; margin:auto 15px; font-weight:600">
                                 </div><br>
-                                <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">';
-                                    
+                                <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">
+                                <div class="row" >
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">Facebook</label><input type="text" name="facebook" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->facebook.'" style="width:300px; margin:auto 15px; font-weight:600">
+                                </div><br>
+                                <div class="row" >
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">Twitter</label><input type="text" name="twitter" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->twitter.'" style="width:300px; margin:auto 15px; font-weight:600">
+                                </div><br>
+                                <div class="row" >
+                                    <label class="col-md-auto color-darkTheme " style="width:200px;">Instagram</label><input type="text" name="instagram" class="col-md-auto bold-600 color-darkTheme no-block" value="'.$user->instagram.'" style="width:300px; margin:auto 15px; font-weight:600">
+                                </div><br>
+                                <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">
+                                <input type="submit" class="full-width" value="Simpan Data" name="simpan">';
+                                
                                 ?>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div class="media-social-container p-x-5 pad-t-60px">
                         <div class="row h-100">
                             <div class="col">
-                                <a class="social-media" href="<?php echo 'https://www.facebook.com/'.$user->facebook?>"><i class="fab fa-facebook-f" id="profile"></i></a>
+                                <a class="social-media" href="#"><i class="fab fa-facebook-f" id="profile"></i></a>
                             </div>
                             <div class="col">
                                 <a class="social-media" href="#"><i class="fab fa-twitter" id="profile"></i></a>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/TB.css">
+    <script src="js/editor.js"></script>
 </head>
 
 <body>
@@ -55,47 +56,48 @@
                             <h3 class="color-darkTeme">>> Tambah Berita</h3>
                         </div>
                         <hr>
-                        <div class="row pad-b-40px">
-                            <div class="col-md-auto img-berita mb-5 mr-5" >
-                                <img src="images/2.JPEG" alt="pp">
-                                <input type="submit" value="Upload" class="full-width mt-4">
-                            </div>
-                            <div class="col berita-header" >
-                                <div class="row  mar-t-20px">
-                                    <label class="col-md-auto color-darkTheme">Judul :</label><br>
+                        <form action="tambah-berita_action.php" method="POST">
+                            <div class="row pad-b-40px">
+                                <div class="col-md-auto img-berita mb-5 mr-5">
+                                    <img src="images/2.JPEG" alt="pp">
+                                    <input type="submit" value="Upload" class="full-width mt-4">
                                 </div>
-                                <input type="text" placeholder="Judul Berita" class="text-box color-darkTheme">
-                                <div class="row">
-                                    <label class="col-md-auto color-darkTheme">Kategori :</label><br>
+                                <div class="col berita-header">
+                                    <div class="row  mar-t-20px">
+                                        <label class="col-md-auto color-darkTheme">Judul :</label><br>
+                                    </div>
+                                    <input type="text" placeholder="Judul Berita" class="text-box color-darkTheme" name="judul">
+                                    <div class="row">
+                                        <label class="col-md-auto color-darkTheme">Kategori :</label><br>
+                                    </div>
+                            
+                                    <select class="full-width combo-box color-darkTheme" name="kategori">
+                                        <option value="Event">Event</option>
+                                        <option value="Berita">Berita</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
                                 </div>
-                                
-                                <select class="full-width combo-box color-darkTheme">
-                                    <option>Event</option>
-                                    <option>Berita</option>
-                                    <option>Lainnya</option>
-                                </select>
                             </div>
-                        </div>
-                        <div class="row  mar-t-20px">
-                            <label class="color-darkTheme">Isi Berita :</label><br>
-                        </div>
-                        <div class="row berita-editor">
-                            <div class="tools">
-                                <button type="button" class="tool-button">B</button>
-                                <button type="button" class="tool-button underline">Link</button>
-                                <button type="button" class="tool-button underline">B-quote</button>
-                                <button type="button" class="tool-button centerline">del</button>
-                                <button type="button" class="tool-button centerline">ins</button>
-                                <button type="button" class="tool-button centerline">img</button>
+                            <div class="row  mar-t-20px">
+                                <label class="color-darkTheme">Isi Berita :</label><br>
                             </div>
-                            <textarea class="editor mb-3"></textarea>
-                            <button type="button" class="tool-button publish">Publish</button>
-                            <button type="button" class="tool-button preview color-lightTheme">Preview</button>
-                        </div>
+                            <div class="row berita-editor">
+                                <div class="tools">
+                                    <button type="button" class="tool-button" onclick="editorTool('editor', 0)">B</button>
+                                    <button type="button" class="tool-button underline" onclick="editorTool('editor', 1)">Link</button>
+                                    <button type="button" class="tool-button centerline" onclick="editorTool('editor', 2)">del</button>
+                                    <button type="button" class="tool-button centerline" onclick="editorTool('editor', 3)">img</button>
+                                </div>
+                                <textarea class="editor mb-3" id="editor" maxlength="65535" name="isi"></textarea>
+                                <button type="submit" class="tool-button publish" name="publish">Publish</button>
+                                <button type="button" class="tool-button preview color-lightTheme">Preview</button>
+                            </div>
+                        </form>
                         <br><br>
                         <h3 class="color-darkTeme">>> Berita-Berita</h3>
                         <hr>
                         <form id="form1" runat="server">
+                            <iframe name="hidden-frame" width="0" height="0" border="0" style="display: none;"></iframe>
                             <table>
                                 <tr >
                                     <th >No.</strong></th>
@@ -104,30 +106,41 @@
                                     <th >Tanggal Rilis</th>
                                     <th >Option</th>
                                 </tr>
-                                <tr>
-                                    <td >1.</td>
-                                    <td >Oprec KSR 2018/2019</td>
-                                    <td>Berita</td>
-                                    <td>Rabu 4 September 2018</td>
-                                    <td>
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Edit </button>
-                                            <button class="btn-rej"> Hapus </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >2.</td>
-                                    <td >Pengabdian Masyarakat</td>
-                                    <td>Event</td>
-                                    <td>Senin 2 September 2018</td>
-                                    <td >
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Edit </button>
-                                            <button class="btn-rej"> Hapus </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <?php
+                                    include_once 'koneksi.php';
+                                    $con=konek();
+                                    $query = "SELECT * FROM berita ORDER BY created_at DESC";
+                                    $result = mysqli_query($con, $query);
+                                    if(mysqli_num_rows($result)==0){
+                                        echo    '<tr>
+                                                    <td colspan="7">Tidak Ada Pendaftar.</td>
+                                                </tr>';
+                                    }else{
+                                        $no = 1;
+                                        
+                                        while($data = mysqli_fetch_assoc($result)){
+                                            echo '
+                                                <tr>
+                                                    <td >'.$no.'</td>
+                                                    <td>'.$data['judul'].'</td>
+                                                    <td>'.$data['kategori'].'</td>
+                                                    <td>'.$data['created_at'].'</td>
+                                                    <td>
+                                                        <div class="centralize">
+                                                            <form action="pendaftar_action.php" method="post" target="hidden-frame">
+                                                                <input type="hidden" name="id" value="'.$data['id'].'">
+                                                                <button type= "submit" class="btn-acc" name="acc" > Accept </button>
+                                                                <button type= "submit" class="btn-rej" name="rej" onclick="'."return confirm('Anda Yakin Menghapus --> ".$data['judul']."?')".'"> Reject </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ';
+                                            $no++;
+                                        }
+                                    }
+                                ?>
+                               
                             </table>
                         </form>
                     </div>

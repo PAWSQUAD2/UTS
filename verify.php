@@ -45,69 +45,56 @@
 	<div class="row p-x-10 pad-t-60px">
 		<div class="container border-radius-5px mar-t-20px pad-b-40px" style="background-color: #0000003b;">
             <?php
+				function show_error(){
+					echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
+                        <p class="color-lightTheme" style="text-align:center; margin:auto auto;">ERROR--WRONG TOKEN!</p>
+                        </div>
+                        <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
+                        <hr>
+                        <h3 class="color-lightTheme">WRONG TOKEN!!</h3>
+                        <p class="color-lightTheme">Token Anda tidak valid atau kadaluarsa.</p>
+                        <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman daftar.</p>
+                        <hr>';
+				}
                 if(isset($_GET['token'])){
 					include_once 'koneksi.php';
 					$con = konek();
+					$token = $_GET['token'];
+					$result = $con->query("SELECT * FROM email_verification WHERE token='$token'");
 					if(mysqli_num_rows($result)!=0){
 						$data = mysqli_fetch_assoc($result);
 						
-						$token = $data['email'];
-						echo $token;
-						if()
+						$email = $data['email'];
+						$result = $con->query("UPDATE users SET emailactivated=1 WHERE email='$email'");
+						if($result){
+							$result = $con->query("DELETE FROM email_verification WHERE email='$email'");
+							echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #26b72b78;">
+							<p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda telah berhasil mendaftar mohon lakukan aktivasi email atau Anda tidak dapat login.</p>
+							</div>
+							<div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
+							<hr>
+							<h3 class="color-lightTheme">Selamat : '.$email.' !!</h3>
+							<p class="color-lightTheme">Anda telah berhasil melakukan aktivasi email, Anda baru bisa login jika Anda telah diterima oleh admin.</p>
+							<p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman login.</p>
+							<hr>';
+						}else{
+							show_error();
+						}
 					}else{
-						echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #26b72b78;">
-                        <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda telah berhasil mendaftar mohon lakukan aktivasi email atau Anda tidak dapat login.</p>
-                        </div>
-                        <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
-                        <hr>
-                        <h3 class="color-lightTheme">Sukses Mendaftar !!</h3>
-                        <p class="color-lightTheme">Anda telah berhasil mendaftar mohon lakukan aktivasi email atau Anda tidak dapat login.</p>
-                        <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman login.</p>
-                        <hr>';
+						show_error();
 					}
-                    if($_GET['token']==="ok"){
-                        
-                        
-                    }else if($_GET['token']==="no"){
-                        echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
-                        <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang!</p>
-                        </div>
-                        <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
-                        <hr>
-                        <h3 class="color-lightTheme">Gagal Mendaftar !!</h3>
-                        <p class="color-lightTheme">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang! atau coba hubungi administrator website.</p>
-                        <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman daftar.</p>
-                        <hr>';
-                    }else if($_GET['token']==="email_taken"){
-                        echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
-                        <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang!</p>
-                        </div>
-                        <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
-                        <hr>
-                        <h3 class="color-lightTheme">Email Telah Terdaftar !!</h3>
-                        <p class="color-lightTheme">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang dengan email yang berbeda! atau coba hubungi administrator website.</p>
-                        <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman daftar.</p>
-                        <hr>';
-                    }else{
-                        echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
-                        <p class="color-lightTheme" style="text-align:center; margin:auto auto;">ERROR--BAD REQUEST!</p>
-                        </div>
-                        <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
-                        <hr>
-                        <h3 class="color-lightTheme">BAD REQUEST !!</h3>
-                        <p class="color-lightTheme">ERROR BAD REQUEST VALUE</p>
-                        <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman daftar.</p>
-                        <hr>';
-                    }
+                    
                 }else{
-                    echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
-                    <p class="color-lightTheme" style="text-align:center; margin:auto auto;">ERROR--BAD REQUEST!</p>
+                    echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #00000078;">
+                    <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Masukkan Token Anda</p>
                     </div>
                     <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
-                    <hr>
-                    <h3 class="color-lightTheme">BAD REQUEST !!</h3>
-                    <p class="color-lightTheme">ERROR BAD REQUEST VALUE</p>
-                    <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman daftar.</p>
+					<hr>
+					<form action="verify.php" method="get">
+					<p class="color-lightTheme">Token Anda: </p>
+					<input type="text" placeholder="Token" name="token">
+					<input class="full-width" type="submit" value="Verifikasi" name="verifikasi">
+					</form>
                     <hr>';
                 }
             ?>

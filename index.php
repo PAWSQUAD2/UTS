@@ -56,7 +56,7 @@
                                             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
                   <a class="dropdown-item color-darkTheme" href="profile.php">Beranda</a> 
-                  <a class="dropdown-item color-darkTheme" href="#">--</a>
+                  <a class="dropdown-item color-darkTheme" href="profile_edit.php">Edit Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item color-darkTheme" href="logout.php">Keluar</a> 
                 </div>
