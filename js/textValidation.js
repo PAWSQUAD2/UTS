@@ -7,6 +7,7 @@ function inputValidation(tipe, id, errId) {
         case "email":
             re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             err= "Format Email Anda Salah atau Tidak Boleh Kosong.";
+            
             break;
         case "name":
             re = /^[a-zA-Z ]+$/;
@@ -49,6 +50,7 @@ function rePassValidation(id1, id2, errId) {
         document.getElementById(errId).innerHTML = "";
     }
 }
-function setFailLogin(id){
-    document.getElementById("fail-login").style.visibility="visible";
+function setFailLogin(id, err=""){
+    document.getElementById(id).style.visibility="visible";
+    document.getElementById(id).innerHTML = err;
 }

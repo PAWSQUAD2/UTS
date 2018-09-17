@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/TB.css">
+    <?php
+        include_once 'session.php';
+        session_init(1);
+    ?>
 </head>
 
 <body>
@@ -57,89 +61,59 @@
                         </div>
                         <h3 class="color-darkTheme">>> Calon-Calon Anggota KSR</h3>
                         <hr>
-                        <form id="form1" runat="server">
-                            <table>
-                                <tr >
-                                    <th >No.</strong></th>
-                                    <th >Nama</th>
-                                    <th >Fakultas</th>
-                                    <th >Program Studi</th>
-                                    <th >NIM</th>
-                                    <th >Email</th>
-                                    <th >Accept/Reject</th>
-                                </tr>
-                                <tr>
-                                    <td >1.</td>
-                                    <td ><a href="#">Jo Vianto</a></td>
-                                    <td>FTI</td>
-                                    <td>Teknik Informatika</td>
-                                    <td>170709173</td>
-                                    <td>sjovianto@gmail.com</td>
-                                    <td>
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Accept </button>
-                                            <button class="btn-rej"> Reject </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >2.</td>
-                                    <td ><a href="#">Agustinus Alga P</a></td>
-                                    <td>FTI</td>
-                                    <td>Teknik Informatika</td>
-                                    <td>150708168</td>
-                                    <td>Agustinusgtx@gmail.com</td>
-                                    <td >
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Accept </button>
-                                            <button class="btn-rej"> Reject </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >3.</td>
-                                    <td ><a href="#">Valeria Yesina Natalia</a></td>
-                                    <td>FTI</td>
-                                    <td>Teknik Informatika</td>
-                                    <td>150708127</td>
-                                    <td>valeriayessi12@gmail.com</td>
-                                    <td >
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Accept </button>
-                                            <button class="btn-rej"> Reject </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >4.</td>
-                                    <td ><a href="#">Christ Andreano</a></td>
-                                    <td>FTI</td>
-                                    <td>Teknik Informatika</td>
-                                    <td>150708166</td>
-                                    <td>Christandreano@gmail.com</td>
-                                    <td >
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Accept </button>
-                                            <button class="btn-rej"> Reject </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >5.</td>
-                                    <td ><a href="#">Paternus Adita</a></td>
-                                    <td>FTI</td>
-                                    <td>Teknik Informatika</td>
-                                    <td>160708701</td>
-                                    <td >Paternusaditaresky@gmail.com</td>
-                                    <td>
-                                        <div class="centralize">
-                                            <button class="btn-acc"> Accept </button>
-                                            <button class="btn-rej"> Reject </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
+                        <iframe name="hidden-frame" width="0" height="0" border="0" style="display: none;"></iframe>
+                        <table>
+                            <tr >
+                                <th >No.</strong></th>
+                                <th >Nama</th>
+                                <th >Fakultas</th>
+                                <th >Program Studi</th>
+                                <th >NIM</th>
+                                <th >Email</th>
+                                <th >Accept/Reject</th>
+                            </tr>
+                            <?php
+                                include_once 'koneksi.php';
+                                $con=konek();
+                                $query = "SELECT * FROM users WHERE role='anggota baru' ORDER BY name";
+                                $result = mysqli_query($con, $query);
+                                if($_SESSION['user']->role!='admin'){
+                                    echo    '<tr>
+                                                <td colspan="7">Anda tidak punya hak untuk mengakses data ini.</td>
+                                            </tr>';
+                                }else if(mysqli_num_rows($result)==0){
+                                    echo    '<tr>
+                                                <td colspan="7">Tidak Ada Pendaftar.</td>
+                                            </tr>';
+                                }else{
+                                    $no = 1;
+                                    
+                                    while($data = mysqli_fetch_assoc($result)){
+                                        echo '
+                                            <tr>
+                                                <td >'.$no.'</td>
+                                                <td ><a href="profile.php?uid='.$data['token'].'">'.$data['name'].'</a></td>
+                                                <td>FTI</td>
+                                                <td>'.$data['prody'].'</td>
+                                                <td>'.$data['npm'].'</td>
+                                                <td>'.$data['email'].'</td>
+                                                <td>
+                                                    <div class="centralize">
+                                                        <form action="pendaftar_action.php" method="post" target="hidden-frame">
+                                                            <input type="hidden" name="Userid" value="'.$data['token'].'">
+                                                            <button type= "submit" class="btn-acc" name="acc" onclick="'."return confirm('Anda Yakin Menerima --> ".$data['name']."?')".'"> Accept </button>
+                                                            <button type= "submit" class="btn-rej" name="rej" onclick="'."return confirm('Anda Yakin Menolak --> ".$data['name']."?')".'"> Reject </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ';
+                                        $no++;
+                                    }
+                                }
+                            ?>
+                        </table>
+                        
                     </div>
                 </div>
             </div>

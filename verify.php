@@ -45,9 +45,17 @@
 	<div class="row p-x-10 pad-t-60px">
 		<div class="container border-radius-5px mar-t-20px pad-b-40px" style="background-color: #0000003b;">
             <?php
-                if(isset($_GET['result'])){
-                    if($_GET['result']==="ok"){
-                        echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #26b72b78;">
+                if(isset($_GET['token'])){
+					include_once 'koneksi.php';
+					$con = konek();
+					if(mysqli_num_rows($result)!=0){
+						$data = mysqli_fetch_assoc($result);
+						
+						$token = $data['email'];
+						echo $token;
+						if()
+					}else{
+						echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #26b72b78;">
                         <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda telah berhasil mendaftar mohon lakukan aktivasi email atau Anda tidak dapat login.</p>
                         </div>
                         <div class="border-radius-5px mar-t-20px" style="background-color: #0000002b;"></div>
@@ -56,8 +64,11 @@
                         <p class="color-lightTheme">Anda telah berhasil mendaftar mohon lakukan aktivasi email atau Anda tidak dapat login.</p>
                         <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman login.</p>
                         <hr>';
+					}
+                    if($_GET['token']==="ok"){
                         
-                    }else if($_GET['result']==="no"){
+                        
+                    }else if($_GET['token']==="no"){
                         echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
                         <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang!</p>
                         </div>
@@ -67,7 +78,7 @@
                         <p class="color-lightTheme">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang! atau coba hubungi administrator website.</p>
                         <p class="color-lightTheme">Klik <a href="daftar.html">Disini</a> untuk kembali ke halaman daftar.</p>
                         <hr>';
-                    }else if($_GET['result']==="email_taken"){
+                    }else if($_GET['token']==="email_taken"){
                         echo '<div class="border-radius-5px mar-t-20px p-2" style="background-color: #ff000078;">
                         <p class="color-lightTheme" style="text-align:center; margin:auto auto;">Anda tidak berhasil mendaftar mohon lakukan pendaftaran ulang!</p>
                         </div>

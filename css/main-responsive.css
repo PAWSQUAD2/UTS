@@ -71,6 +71,9 @@ label{
 .mNav .nav-item a.color-darkOrange{
 	color: rgb(231, 92, 0) !important;
 }
+.nav-item .dropdown-menu .color-darkTheme {
+    color: #002836 !important;
+}
 .bg-color-darkorange{
 	background-color: rgb(231, 92, 0) !important;
 }

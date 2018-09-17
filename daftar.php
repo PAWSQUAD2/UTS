@@ -128,9 +128,10 @@
 						</div>
 					</div>
 					<div class="row">
-					<div class="col-xl-12">
+						<div class="col-xl-12">
 							<label class="color-lightTheme"><span class="color-red">*</span> Password</label><span class="validity"></span>
 							<input class="placeholder-lightTheme" name="pass" type="password" placeholder="********" required/>
+							<a href="#" style="margin-bottom:5px; margin-top:5">Lupa Password?</a>
 						</div>
 					</div>
 					<div class="row fail-login">
@@ -140,7 +141,6 @@
 					</div>
 					<div class="row">
 						<div class="col-xl-12">
-							
 							<input class="full-width bg-color-darkorange" type="submit" value="Login" name="login"/>
 						</div>
 					</div>
@@ -186,5 +186,9 @@
 	<hr class="split">
 	<p class="text-center">Copyright @2018 | privacy policy | disclaimer | site map</p>
 </footer>
-
+<?php
+	if(isset($_GET['expired'])){
+		echo '<script>setFailLogin("fail-login","Session Key Anda Kadaluarsa.")</script>';
+	}
+?>
 </html>

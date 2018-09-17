@@ -2,11 +2,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>PROFIL - Jo Vianto</title>
+<title>PROFIL - </title>
 	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
 	<link href="css/main-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="css/footer.css" rel="stylesheet">
+    <?php
+        include_once 'session.php';
+        session_init(true);
+    ?>
 </head>
 
 <body>
@@ -54,40 +58,50 @@
                                 <img src="images/pp.png" alt="pp">
                             </div>
                             <div class="col profile-data" >
-                                <div class="speech-icon">Hello</div>
+                                <?php
+                                    include_once 'koneksi.php';
+                                    include_once 'user.php';
+                                    $user;
+                                    if(isset($_GET['uid'])){
+                                        $uid = $_GET['uid'];
+                                        $user = User::getUser($uid);
+                                    }else{
+                                        $user = $_SESSION['user'];
+                                    }
+                                    echo '<div class="speech-icon">Hello</div>
                                 <div class="row  mar-t-20px">
-                                    <label class="col-md-auto color-darkTheme h1 weight-300">I'm <span class="bold-600">Jo Vianto</span></label><input type="submit" value="Edit" style="margin-left: 200px"><br>
+                                    <label class="col-md-auto color-darkTheme h1 weight-300">Iam <span class="bold-600">'.$user->name.'</span></label><input type="submit" value="Edit" style="margin-left: 200px"><br>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-auto color-darkTheme weight-300">Expert-Trainer</label><br>
+                                    <label class="col-md-auto color-darkTheme weight-300">'.$user->role.'</label><br>
                                 </div>
                                 <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">
                                 <div class="row">
-                                    <label class="col-md-auto color-darkTheme ">EMAIL </label> <label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: sjovianto@gmail.com</label>
+                                    <label class="col-md-auto color-darkTheme ">E-MAIL</label> <label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: '.$user->email.'</label>
                                 </div><br>
                                 
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">PROGRAM STUDI  </label><label class="col-md-auto color-secondTheme weight-300">: Teknik Informatika</label>
+                                    <label class="col-md-auto color-darkTheme ">PROGRAM STUDI  </label><label class="col-md-auto color-secondTheme weight-300">: '.$user->prody.'</label>
                                 </div><br>
                             
                                  <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">NPM </label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: 9173</label>
+                                    <label class="col-md-auto color-darkTheme ">NPM </label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: '.$user->npm.'</label>
                                 </div><br>
                           
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">TELEPON </label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: 082245325533</label>
+                                    <label class="col-md-auto color-darkTheme ">TELEPON </label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: '.$user->phone.'</label>
                                 </div><br>
                            
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">TEMPAT LAHIR</label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;: Condong Catur</label>
+                                    <label class="col-md-auto color-darkTheme ">TEMPAT LAHIR</label><label class="col-md-auto color-secondTheme weight-300">&ensp;&ensp;: '.$user->bornplace.'</label>
                                 </div><br>
                            
                                 <div class="row" >
-                                    <label class="col-md-auto color-darkTheme ">TANGGAL LAHIR</label><label class="col-md-auto color-secondTheme weight-300">&ensp;: 24/07/1999</label>
+                                    <label class="col-md-auto color-darkTheme ">TANGGAL LAHIR</label><label class="col-md-auto color-secondTheme weight-300">&ensp;: '.$user->birthday.'</label>
                                 </div><br>
-                                <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">
-                        
-                      
+                                <hr style="height:2px;border:none;background-color:rgb(82, 82, 82);">';
+                                    
+                                ?>
                             </div>
                         </div>
                     </div>

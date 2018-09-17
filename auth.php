@@ -1,19 +1,25 @@
 <?php
     if(isset($_POST['login'])){
-        include_once 'koneksi.php';
-        $con = konek();
-       
+        include_once 'user.php';
         $email = $_POST['email'];
         $pass = md5($_POST['pass']);
-        $query = "SELECT * FROM users WHERE email= '$email' AND password='$pass'";
-        $result = $con->query($query);
-        if(mysqli_num_rows($result)!=0){
-            header("Location: daftar_hasil.php?result=ok");
+        $user = User::login($email, $pass);
+        if( $user!= null){
+            if($user->isActivated == false){
+                echo '<script type="text/javascript">window.parent.document.getElementById("fail-login").style.visibility="visible";
+                window.parent.document.getElementById("fail-login").innerHTML = "Email Anda Belum Terverifikasi.";</script>';
+                session_destroy();
+            }else if($user->role==="anggota baru"){
+                echo '<script type="text/javascript">window.parent.document.getElementById("fail-login").style.visibility="visible";
+                window.parent.document.getElementById("fail-login").innerHTML = "Anda tidak dapat Login sebelum diterima.";</script>';
+                session_destroy();
+            }else {
+                echo '<script>window.top.location.replace("index.php");</script>';
+            }
         }else{
-            //header("Location: daftar_hasil.php?result=no");
-            echo '<script type="text/javascript">window.parent.document.getElementById("fail-login").style.visibility="visible";</script>';
+            echo '<script type="text/javascript">window.parent.document.getElementById("fail-login").style.visibility="visible";
+            window.parent.document.getElementById("fail-login").innerHTML = "Gagal Masuk! Email/Password Anda Salah.";</script>';
         }
-        
     }else{
         header("Location: daftar_hasil.php");
     }
