@@ -71,3 +71,18 @@
     width: 120px;
     padding: 7px;
 }
+
+.preview-container{
+    margin-top: 50px;
+    margin: 0 auto;
+    border: 1px gainsboro solid;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+#preview-isi{
+    overflow: inherit;
+    word-wrap: break-word;
+    text-align: justify;
+    width: 100%;
+    padding: 40px;
+}

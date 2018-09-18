@@ -56,7 +56,8 @@
                             <h3 class="color-darkTeme">>> Tambah Berita</h3>
                         </div>
                         <hr>
-                        <form action="tambah-berita_action.php" method="POST">
+                        <iframe name="hidden-frame" width="0" height="0" border="0" style="display: none;"></iframe>
+                        <form action="tambah-berita_action.php" method="POST" target="hidden-frame" id="form-berita">
                             <div class="row pad-b-40px">
                                 <div class="col-md-auto img-berita mb-5 mr-5">
                                     <img src="images/2.JPEG" alt="pp">
@@ -66,12 +67,12 @@
                                     <div class="row  mar-t-20px">
                                         <label class="col-md-auto color-darkTheme">Judul :</label><br>
                                     </div>
-                                    <input type="text" placeholder="Judul Berita" class="text-box color-darkTheme" name="judul">
+                                    <input type="text" placeholder="Judul Berita" class="text-box color-darkTheme" name="judul" id="judul">
                                     <div class="row">
                                         <label class="col-md-auto color-darkTheme">Kategori :</label><br>
                                     </div>
                             
-                                    <select class="full-width combo-box color-darkTheme" name="kategori">
+                                    <select class="full-width combo-box color-darkTheme" name="kategori" id="kategori">
                                         <option value="Event">Event</option>
                                         <option value="Berita">Berita</option>
                                         <option value="Lainnya">Lainnya</option>
@@ -87,62 +88,92 @@
                                     <button type="button" class="tool-button underline" onclick="editorTool('editor', 1)">Link</button>
                                     <button type="button" class="tool-button centerline" onclick="editorTool('editor', 2)">del</button>
                                     <button type="button" class="tool-button centerline" onclick="editorTool('editor', 3)">img</button>
+                                    <button type="button" class="tool-button" onclick="editorTool('editor', 4)">P</button>
                                 </div>
                                 <textarea class="editor mb-3" id="editor" maxlength="65535" name="isi"></textarea>
-                                <button type="submit" class="tool-button publish" name="publish">Publish</button>
-                                <button type="button" class="tool-button preview color-lightTheme">Preview</button>
+                                <button type="submit" class="tool-button publish" name="publish" id="publish">Publish</button>
+                                <button type="button" class="tool-button preview color-lightTheme" onclick="preview();">Preview</button>
                             </div>
                         </form>
+                        <hr>
+                        <div class="row full-width preview-container" style="display:none;" id="preview-container">
+                            <h4 style="text-align:center; margin-bottom:40px;" class="full-width bold" ><-PREVIEW-></h4>
+                            <h4 style="text-align:center; " class="full-width" id="preview-judul">AWEWE</h4>
+                            <h6 style="text-align:center; margin-bottom:80px;" class="full-width" id="preview-kategori">Kategori :</h6>
+                            <br>
+                            <div class="full-width" id="preview-isi"></div>
+                            
+                        </div>
                         <br><br>
                         <h3 class="color-darkTeme">>> Berita-Berita</h3>
                         <hr>
-                        <form id="form1" runat="server">
-                            <iframe name="hidden-frame" width="0" height="0" border="0" style="display: none;"></iframe>
-                            <table>
-                                <tr >
-                                    <th >No.</strong></th>
-                                    <th >Judul</th>
-                                    <th >Jenis</th>
-                                    <th >Tanggal Rilis</th>
-                                    <th >Option</th>
-                                </tr>
-                                <?php
-                                    include_once 'koneksi.php';
-                                    $con=konek();
-                                    $query = "SELECT * FROM berita ORDER BY created_at DESC";
-                                    $result = mysqli_query($con, $query);
-                                    if(mysqli_num_rows($result)==0){
-                                        echo    '<tr>
-                                                    <td colspan="7">Tidak Ada Pendaftar.</td>
-                                                </tr>';
-                                    }else{
-                                        $no = 1;
-                                        
-                                        while($data = mysqli_fetch_assoc($result)){
-                                            echo '
-                                                <tr>
-                                                    <td >'.$no.'</td>
-                                                    <td>'.$data['judul'].'</td>
-                                                    <td>'.$data['kategori'].'</td>
-                                                    <td>'.$data['created_at'].'</td>
-                                                    <td>
-                                                        <div class="centralize">
-                                                            <form action="pendaftar_action.php" method="post" target="hidden-frame">
-                                                                <input type="hidden" name="id" value="'.$data['id'].'">
-                                                                <button type= "submit" class="btn-acc" name="acc" > Accept </button>
-                                                                <button type= "submit" class="btn-rej" name="rej" onclick="'."return confirm('Anda Yakin Menghapus --> ".$data['judul']."?')".'"> Reject </button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ';
-                                            $no++;
-                                        }
+                            
+                        <table>
+                            <tr >
+                                <th >No.</strong></th>
+                                <th >Judul</th>
+                                <th >Jenis</th>
+                                <th >Tanggal Rilis</th>
+                                <th >Option</th>
+                            </tr>
+                            <?php
+                                include_once 'koneksi.php';
+                                $con=konek();
+                                $query = "SELECT * FROM berita ORDER BY created_at DESC";
+                                $result = mysqli_query($con, $query);
+                                if(mysqli_num_rows($result)==0){
+                                    echo    '<tr>
+                                                <td colspan="5" style="text-align:center;">Tidak Ada Berita.</td>
+                                            </tr>';
+                                }else{
+                                    $no = 1;
+                                    
+                                    while($data = mysqli_fetch_assoc($result)){
+                                        echo '
+                                            <tr>
+                                                <td >'.$no.'</td>
+                                                <td>'.$data['judul'].'</td>
+                                                <td>'.$data['kategori'].'</td>
+                                                <td>'.$data['created_at'].'</td>
+                                                <td>
+                                                    <div class="centralize">
+                                                        <form action="tambah-berita_action.php" method="POST" target="hidden-frame">
+                                                            <input type="hidden" name="id" value="'.$data['id'].'">
+                                                            <button type= "submit" class="btn-acc" name="edit" > Edit </button>
+                                                            <button type= "submit" class="btn-rej" name="delete" onclick="'."return confirm('Anda Yakin Menghapus --> ".$data['judul']."?')".'"> Hapus </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ';
+                                        $no++;
                                     }
-                                ?>
-                               
-                            </table>
-                        </form>
+                                }
+                                if(isset($_GET['edit'])){
+                                    
+                                    $id = $_GET['edit'];
+                                    $result= $con->query("SELECT * FROM berita WHERE id= $id");
+                                    
+                                    if(mysqli_num_rows($result)){
+                                        $data = mysqli_fetch_assoc($result);
+                                        $judul = $data['judul'];
+                                        $kategori = $data['kategori'];
+                                        $isi = $data['isi'];
+                                        
+                                        echo "<script>
+                                        document.getElementById('judul').value = '".$judul."';
+                                        document.getElementById('kategori').value = '".$kategori."';
+                                        document.getElementById('editor').value = '".$isi."';
+                                        document.getElementById('publish').name = 'update';
+                                        document.getElementById('publish').innerHTML = 'Save';
+                                        document.getElementById('form-berita').action += '?id=".$id."';
+                                        </script>";
+                                        
+                                    }
+                                }
+                            ?>
+                            
+                        </table>
                     </div>
                 </div>
             </div>

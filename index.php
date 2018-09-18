@@ -140,36 +140,21 @@
         </div>
       
         <div class="al-row-padding">
-          <div class="al-col al al-m al-margin-bottom">
+          <?php
+            include_once 'koneksi.php';
+            $con = konek();
+            $result = $con->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT 6");
+            while($data = mysqli_fetch_assoc($result)){
+              echo '<div class="al-col al al-m al-margin-bottom">
             <div class="al-display-container">
-              <div class="al-display-topleft al-black al-padding">Drone</div>
-              <img src="images/Carousel_Placeholder.png" alt="drone" style="width:100%; max-width:300px;">
-              <p class="al-caption color-lightTheme">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet risus quis quam volutpat, nec condimentum metus faucibus. Maecenas tempor hendrerit metus quis interdum. Donec id tortor vulputate, fermentum magna vitae, rhoncus nunc. Maecenas tempus arcu imperdiet, mollis metus in, eleifend augue. Nunc lacus metus, pretium id lobortis vitae, imperdiet in est. Nunc tempor, nulla vitae bibendum elementum, nisi ex pellentesque arcu, sed consectetur sem mauris ac tellus. Ut tincidunt vestibulum tincidunt. </p>
+              <div class="al-display-topleft al-black al-padding">'.$data['kategori'].'</div>
+              <img src="images/Carousel_Placeholder.png" alt="'.$data['kategori'].'" style="width:100%; max-width:300px;">
+              <a class="al-title color-lightTheme bold" href="awew.we">'.$data['judul'].'</a>
+              <p class="al-caption color-lightTheme" max-lines="5">'.$data['isi'].'</p>
             </div>
-          </div>
-          <div class="al-col al al-m al-margin-bottom">
-            <div class="al-display-container">
-              <div class="al-display-topleft al-black al-padding">Computer</div>
-              <img src="images/Carousel_Placeholder.png" alt="computer" style="width:100% ;max-width:300px">
-              <div class="al-caption color-lightTheme">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet risus quis quam volutpat, nec condimentum metus faucibus. Maecenas tempor hendrerit metus quis interdum. Donec id tortor vulputate, fermentum magna vitae, rhoncus nunc. Maecenas tempus arcu imperdiet, mollis metus in, eleifend augue. Nunc lacus metus, pretium id lobortis vitae, imperdiet in est. Nunc tempor, nulla vitae bibendum elementum, nisi ex pellentesque arcu, sed consectetur sem mauris ac tellus. Ut tincidunt vestibulum tincidunt. </div>
-
-            </div>
-          </div>
-          <div class="al-col al al-m al-margin-bottom">
-            <div class="al-display-container">
-              <div class="al-display-topleft al-black al-padding">Drone</div>
-              <img src="images/Carousel_Placeholder.png" alt="drone" style="width:100%; max-width:300px">
-              <div class="al-caption color-lightTheme">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet risus quis quam volutpat, nec condimentum metus faucibus. Maecenas tempor hendrerit metus quis interdum. Donec id tortor vulputate, fermentum magna vitae, rhoncus nunc. Maecenas tempus arcu imperdiet, mollis metus in, eleifend augue. Nunc lacus metus, pretium id lobortis vitae, imperdiet in est. Nunc tempor, nulla vitae bibendum elementum, nisi ex pellentesque arcu, sed consectetur sem mauris ac tellus. Ut tincidunt vestibulum tincidunt. </div>
-
-            </div>
-          </div>
-          <div class="al-col al al-m al-margin-bottom">
-            <div class="al-display-container">
-              <div class="al-display-topleft al-black al-padding">Drone</div>
-              <img src="images/Carousel_Placeholder.png" alt="drone" style="width:100%; max-width:300px">
-              <div class="al-caption color-lightTheme ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet risus quis quam volutpat, nec condimentum metus faucibus. Maecenas tempor hendrerit metus quis interdum. Donec id tortor vulputate, fermentum magna vitae, rhoncus nunc. Maecenas tempus arcu imperdiet, mollis metus in, eleifend augue. Nunc lacus metus, pretium id lobortis vitae, imperdiet in est. Nunc tempor, nulla vitae bibendum elementum, nisi ex pellentesque arcu, sed consectetur sem mauris ac tellus. Ut tincidunt vestibulum tincidunt. </div>
-
-            </div>
+          </div>';
+            }
+          ?>
           </div>
         </div>
       </div>
