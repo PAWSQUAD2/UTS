@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/TB.css">
     <link href="css/index.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/icon1.ico">
     <?php
     include_once 'user.php';
     session_start();

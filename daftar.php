@@ -17,7 +17,8 @@
         }else{
 
         }
-    ?>
+	?>
+	<link rel="shortcut icon" href="images/icon1.ico">
 </head>
 
 <body>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/TB.css">
+    <link rel="shortcut icon" href="images/icon1.ico">
     <script src="js/editor.js"></script>
     <?php
         include_once 'session.php';
@@ -194,11 +195,12 @@
                                         document.getElementById('judul').value = '".$judul."';
                                         document.getElementById('kategori').value = '".$kategori."';
                                         document.getElementById('editor').value = '".$isi."';
+                                        document.getElementById('selectedFile').required = false;
                                         document.getElementById('publish').name = 'update';
                                         document.getElementById('publish').innerHTML = 'Save';
                                         document.getElementById('form-berita').action += '?id=".$id."';
+                                        document.getElementById('img-preview').src ='".$data['photoUrl']."';
                                         </script>";
-                                        
                                     }
                                 }
                             ?>

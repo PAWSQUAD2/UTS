@@ -571,7 +571,7 @@ input:valid + span:before {
     overflow: hidden;
     position: relative;
     height: 275px;
-    background-color: rgb(64, 195, 243);
+    background-color: rgb(188, 197, 200);
 }
 
 .container-berita {

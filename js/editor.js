@@ -23,6 +23,7 @@ function readURL(input) {
             $('#img-preview')
                 .attr('src', e.target.result);
         };
+        
         reader.readAsDataURL(input.files[0]);
     }
 }
