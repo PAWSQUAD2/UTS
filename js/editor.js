@@ -16,3 +16,13 @@ function preview(){
     document.getElementById("preview-kategori").innerHTML ="Kategori : " + document.getElementById("kategori").value;
     document.getElementById("preview-isi").innerHTML = document.getElementById("editor").value;
 }
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#img-preview')
+                .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}

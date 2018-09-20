@@ -18,7 +18,7 @@ function inputValidation(tipe, id, errId) {
             err = "Format Password Anda Salah. Min: 6, Max: 25 atau Tidak Boleh Kosong.";
             break;
         case "npm":
-            re = /(?=.{9})^[0-9]+$/;
+            re = /(?=.{9,9})^[0-9]+$/;
             err = "Format NPM Anda Salah. 9 Digit dan Hanya Angka.";
             break;
         case "number":
@@ -42,11 +42,12 @@ function rePassValidation(id1, id2, errId) {
     var err = "Password Tidak Cocok!."
     var val1 = document.getElementById(id1).value;
     var val2 = document.getElementById(id2).value;
-    if (val1 !== val2) {
-        document.getElementById(id).setCustomValidity(err);
+    
+    if (val1 != val2) {
+        document.getElementById(id2).setCustomValidity(err);
         document.getElementById(errId).innerHTML = err;
     } else {
-        document.getElementById(id).setCustomValidity("");
+        document.getElementById(id2).setCustomValidity("");
         document.getElementById(errId).innerHTML = "";
     }
 }

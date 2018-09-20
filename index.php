@@ -29,15 +29,14 @@
   <div class="container-fluid">
       <nav class="navbar mNav fixed-top navbar-expand-lg navbar-light bg-light"> 
         <a class="logo"><img src="images/emblen.jpg"/></a>
-        <a class="navbar-brand" href="index.html">KSR</a>
+        <a class="navbar-brand" href="index.php">KSR</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><em>&nbsp;</em></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent1">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"> <a class="nav-link no-outline" href="#">Home <span class="sr-only">(current)</span></a> </li>
-            <li class="nav-item"> <a class="nav-link no-outline" href="daftar.html">Member</a> </li>
-            <li class="nav-item"> <a class="nav-link no-outline" href="tambah-berita.html">Buat Berita</a> </li>
-            <li class="nav-item"> <a class="nav-link no-outline color-darkOrange" href="pendaftar.html">Open Registration</a> </li>
-            
+            <li class="nav-item active"> <a class="nav-link no-outline fa fa-home" href="index.php"> Home <span class="sr-only">(current)</span></a> </li>
+            <li class="nav-item"> <a class="nav-link no-outline fa fa-users" href="member.php"> Member</a> </li>
+            <li class="nav-item"> <a class="nav-link no-outline fa fa-newspaper" href="berita.php"> Berita</a> </li>
+            <li class="nav-item"> <a class="nav-link no-outline color-darkOrange fa fa-user-plus" href="pendaftar.php"> Open Registration</a> </li>
           </ul>
           <div class="pull-right">
               <!-- <ul class="navbar-nav mr-auto">
@@ -54,15 +53,21 @@
                                                 <span class="name">'.$user->name.'</span>
                                               </div> 
                                             </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
-                  <a class="dropdown-item color-darkTheme" href="profile.php">Beranda</a> 
-                  <a class="dropdown-item color-darkTheme" href="profile_edit.php">Edit Profile</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1" > 
+                  <a class="dropdown-item color-darkTheme fa fa-user" href="profile.php">  Beranda</a> 
+                  <a class="dropdown-item color-darkTheme fa fa-wrench" href="profile_edit.php">  Edit Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item color-darkTheme" href="logout.php">Keluar</a> 
+                  <a class="dropdown-item color-darkTheme fa fa-newspaper" href="tambah-berita.php">  Olah Berita</a>
+                  <div class="dropdown-divider"></div>';
+                if($user->role==="admin")
+                echo '<a class="dropdown-item color-darkTheme fa fa-lock"  href="ksr-admin.php">  Panel Admin</a>
+                  <div class="dropdown-divider"></div>';
+                echo '<a class="dropdown-item color-darkTheme fa fa-power-off" href="logout.php">  Keluar</a>
+                   
                 </div>
               </li>';
               }else{
-                echo '<a href="daftar.html" style="outline:0;text-decoration: none;">
+                echo '<a href="daftar.php" style="outline:0;text-decoration: none;">
                   <div class="navbar-profile navbar-nav color-lightTheme mr-auto">
                       <span class="name">Masuk/Daftar</span>
                   </div>
@@ -103,14 +108,14 @@
       </div>
     </div>
     <!-- Page content 1 -->
-    <div class="row p-x-10" style="background-color: white;padding-top: 40px;padding-bottom: 40px">
+    <div class="p-x-10" style="background-color: white;padding-top: 40px;padding-bottom: 40px">
       <div class="container-fluid pad25B row">
         <div class="col-md-4 pad25B my-auto">
-                <div class="card-view">
-                  <div class="icon-card-view"></div>
-                  <h3 class="heder-card-view">Mechanic</h3>
-                  <p class="content-card-view">Mechanic merupakan bentuk badan dari robot dan mekanisme kerjanya, sehingga kurikulum yang kami ajarkan tentang bagaimana membuat bentuk dan proses kerjanya. </p>
-                </div>
+              <div class="card-view">
+                <div class="icon-card-view"></div>
+                <h3 class="heder-card-view">Mechanic</h3>
+                <p class="content-card-view">Mechanic merupakan bentuk badan dari robot dan mekanisme kerjanya, sehingga kurikulum yang kami ajarkan tentang bagaimana membuat bentuk dan proses kerjanya. </p>
+              </div>
         </div>
 
         <div class="col-md-4 pad25B my-auto">
@@ -131,7 +136,7 @@
         </div>					
     </div>
     <!-- Page content -->
-    <div class="row body" style="max-height:1250px; background-color: rgb(64, 67, 68); overflow: hidden;">
+    <div class="body" style="max-height:1250px; background-color: rgb(64, 67, 68); overflow: hidden;">
       <!-- Page content 2-->
       <div class=" col-xl-12" >
           <!-- Project Section -->
@@ -148,8 +153,8 @@
               echo '<div class="al-col al al-m al-margin-bottom">
             <div class="al-display-container">
               <div class="al-display-topleft al-black al-padding">'.$data['kategori'].'</div>
-              <img src="images/Carousel_Placeholder.png" alt="'.$data['kategori'].'" style="width:100%; max-width:300px;">
-              <a class="al-title color-lightTheme bold" href="awew.we">'.$data['judul'].'</a>
+              <img src="'.$data['photoUrl'].'" alt="'.$data['kategori'].'" style="width:100%; max-width:300px;" >
+              <a class="al-title color-lightTheme bold" href="berita.php?id='.$data['id'].'">'.$data['judul'].'</a>
               <p class="al-caption color-lightTheme" max-lines="5">'.$data['isi'].'</p>
             </div>
           </div>';
@@ -159,10 +164,10 @@
         </div>
       </div>
     </div>
-    <div class="row body" style="max-height: 1200px;  background-color: white;overflow: hidden;">
-      <div class="ald-row ald-padding-64" id="about">
+    <div class="body" style="max-height: 1200px;  background-color: white;overflow: hidden;">
+      <div class="row ald-padding-64 pad-b-40px" >
           <div class="ald-col m6 ald-padding-large">
-          <img src="images/Carousel_Placeholder.png" class="ald-round ald-image ald-opacity-min" alt="Table Setting" width="600" height="750">
+          <img src="images/mechatron.jpg" class="ald-round ald-image ald-opacity-min" alt="Mechatron" width="600" height="750">
           </div>
       
           <div class="ald-col m6 ald-padding-large">
@@ -174,9 +179,9 @@
         </div>
       </div>
       
-    <div class="row grid" style="opacity:.7; overflow: hidden;">
+    <div class="grid" style="opacity:.7; overflow: hidden;">
       <div class="about-container" style="height:500px;opacity:50%;">
-        <div class="col "style="opacity:50%">
+        <div class="col no-padding"style="opacity:50%">
           <div class="emblem clear-margin">
             <div class="logo"><img src="images/emblen.jpg"/></div>
             <h3 class="caption color-darkTheme clear-margin">About Us</h3>
@@ -187,19 +192,20 @@
                       <h2 style="text-align: center; font-weight: bold">VISI </h2>
                           <br>
                       <p>
-                          Lorem ipsum dolor sit amet, wisi denique cum ei, ea pro vidit nostrud incorrupte, mea id nullam neglegentur. Rsse dicat petentium ea vim. Eu liber aliquando vel. Vix no aperiam discere.
-
-                          Cum ei suas inciderint. Delenit nonumes te cum, populo expetendis ad mel. Quod singulis maluisset ne vix, esse populo volumus te ius, has iusto mundi viris et.
+                          <?php 
+                            $setting = $con->query("SELECT * FROM setting");
+                            $setting = mysqli_fetch_assoc($setting);
+                            echo $setting['visi'];
+                          ?>
                       </p>
                   </div>
                   <div class="col misi" style="overflow: auto;">
                       <h2 style="text-align: center; font-weight: bold;">MISI </h2>
                           <br>
                       <p>
-                          Erant zril munere ad vis, an esse magna omnes est, cum et audire utamur praesent. Cu vel nemore delectus adolescens, id erant nullam postulant eam. Labitur fabellas ne duo. Duo ad nemore civibus, tota populo ne cum.
-
-
-                          Illum laboramus vulputate vix ex. Doming legimus denique ex pri, ipsum movet bonorum ut eos, alii lobortis consectetuer ei duo. Quo viderer tractatos disputationi ex, sit natum deseruisse in. Per nominavi officiis te, ei nullam sensibus mei.
+                        <?php
+                          echo $setting['misi'];
+                        ?>
                       </p>
                   </div>
               </div>
@@ -219,25 +225,29 @@
   </body>
 
      <!--Footer Here-->
-     <footer class="footer">
-                
+     <footer class="footer" >
+      <?php
+        include_once 'koneksi.php';
+        $con = konek();
+        $result = $con->query("SELECT * FROM setting");
+        $data = mysqli_fetch_assoc($result);
+      ?>
       <div class="container bottom_border">
           <div class="row">
           <div class="col text-center">
               <h5 class="headin5_amrc col_white_amrc pt2">Get in Touch</h5>
-              <p><i class="fa fa-location-arrow"></i> Under Construction</p>
-              <p><i class="fa fa-phone"></i>  Under Construction</p>
-              <p><i class="fa fa fa-envelope"></i> support@website.com</p>
+              <p><i class="fa fa-location-arrow"></i> <?php echo $data['alamat'];?></p>
+              <p><i class="fa fa-phone"></i>  <?php echo $data['phone'];?></p>
+              <p><i class="fa fa fa-envelope"></i> <?php echo $data['email'];?></p>
           </div>
           </div>
           </div>
 
           <div class="row">
               <ul class="social_footer_ul">
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li> 
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li> 
-              <li><a href="#"><i class="fab fa-google +"></i></a></li>
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="<?php echo $data['facebook']?>"><i class="fab fa-facebook-f"></i></a></li> 
+              <li><a href="<?php echo $data['googleplus']?>"><i class="fab fa-google +"></i></a></li>
+              <li><a href="<?php echo $data['instagram']?>"><i class="fab fa-instagram"></i></a></li>
               </ul>
           </div>
           <!--social_footer_ul ends here-->

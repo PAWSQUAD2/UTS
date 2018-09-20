@@ -12,11 +12,12 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 100%;
+    height: 100%;
     /* IE */
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg.jpg', sizingMethod='scale');
     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg.jpg', sizingMethod='scale')";
 }
-
 label{
     display: block;
 }
@@ -24,7 +25,8 @@ label{
 	width: 100%;
 }
 .mNav .nav-item a{
-	color: white !important;
+    color: white !important;
+    margin: auto 0;
 }
 .mNav .navbar-brand{
 	margin-left: 20px;
@@ -50,7 +52,8 @@ label{
 }
 .body{
 	padding: 0 10%;
-	background-color: #74B4CB;
+    background-color: #74B4CB;
+    
 }
 .row.top{
 	padding:0;
@@ -194,7 +197,6 @@ label{
     overflow: auto;
     overflow-x: hidden;
 }
-
 .misi{
     padding-left: 5%;
     padding-right: 10%;
@@ -466,6 +468,12 @@ input:valid + span:before {
     width: 50px;
     border-radius: 50%;
 }
+.avatar {
+    margin : auto 0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
 .navbar-profile .name{
     text-align: center;
     margin: auto 10px auto 10px;
@@ -473,7 +481,7 @@ input:valid + span:before {
 }
 .about-container{
     padding-top: 40px;
-    margin: auto 0;
+    margin: auto;
     width: 100%;
     background-color: #fff;
 }
@@ -532,4 +540,67 @@ input:valid + span:before {
     border:1px solid red;
     text-align: center;
     visibility: hidden;
+}
+
+/* PAGINATION */
+.pagination{
+    border: 1px gainsboro solid;
+    margin: 20px auto;
+    display: table;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+.container-berita .image-berita {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    height: 275px;
+    background-color: rgb(64, 195, 243);
+}
+
+.container-berita {
+    border-top: #00283677 2px solid;
+    border-bottom: #00283677 2px solid;
+    padding-top :15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    height: auto;
+}
+.container-berita .content .title{
+    text-align: left;
+}
+.container-berita .content{
+    padding: 20px;
+    color: #2c3e50;
+}
+.container-berita .content .title{
+    color: rgb(187, 126, 47);
+}
+.container-berita .content article p{
+    margin-top: 15px;
+    max-width: 100%;
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.color-hr{
+    background-color: #00283677;
 }

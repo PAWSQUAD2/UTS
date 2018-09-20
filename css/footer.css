@@ -64,3 +64,9 @@
 	align-items: center;
 	border-color: #cccccc7a;
 }
+#footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	/* Height of the footer */
+}

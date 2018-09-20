@@ -2,16 +2,22 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>List Pendaftar Anggota KSR</title>
+<title>Anggota KSR</title>
 	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
     <link href="css/main-responsive.css" rel="stylesheet">
     <link href="css/tambah-berita.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
-    <link rel="stylesheet" type="text/css" href="css/TB.css">
+    
     <?php
         include_once 'session.php';
-        session_init(1);
+        //session_init(1);
+        session_start();
+        if(isset($_SESSION['user'])){
+        $_SESSION['user']->updateTimeout();
+        }else{
+
+        }
     ?>
 </head>
 
@@ -79,25 +85,21 @@
                             <div class="logo"><img src="images/emblen.jpg"/></div>
                             <h3 class="caption color-darkTheme">Kelompok Studi Robotik</h3>
                         </div>
-                        <h3 class="color-darkTheme">>> Calon-Calon Anggota KSR</h3>
+                        <h3 class="color-darkTheme">>> Anggota-Anggota KSR</h3>
                         <hr>
                         <iframe name="hidden-frame" width="0" height="0" border="0" style="display: none;"></iframe>
-                        <table>
-                            <tr >
-                                <th >No.</strong></th>
-                                <th >Nama</th>
-                                <th >Fakultas</th>
-                                <th >Program Studi</th>
-                                <th >NIM</th>
-                                <th >Email</th>
-                                <th >Accept / Reject</th>
-                            </tr>
+                        <table class="table table-dark">
                             <?php
                                 include_once 'koneksi.php';
                                 $con=konek();
-                                $query = "SELECT * FROM users WHERE role='anggota baru' ORDER BY name";
+                                $halaman = 15; 
+                                $page = isset($_GET['page'])? (int)$_GET["page"]:1;
+                                $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
+                                $query = "SELECT * FROM users WHERE role!='anggota baru' ORDER BY name LIMIT $mulai, $halaman";
+                                $total = $con->query("SELECT * FROM users WHERE role !='anggota baru'");
+                                $pages = ceil(mysqli_num_rows($total)/$halaman);
                                 $result = mysqli_query($con, $query);
-                                if($_SESSION['user']->role!='admin'){
+                                if(false){
                                     echo    '<tr>
                                                 <td colspan="7">Anda tidak punya hak untuk mengakses data ini.</td>
                                             </tr>';
@@ -111,28 +113,40 @@
                                     while($data = mysqli_fetch_assoc($result)){
                                         echo '
                                             <tr>
-                                                <td >'.$no.'</td>
-                                                <td ><a href="profile.php?uid='.$data['token'].'">'.$data['name'].'</a></td>
-                                                <td>FTI</td>
-                                                <td>'.$data['prody'].'</td>
-                                                <td>'.$data['npm'].'</td>
-                                                <td>'.$data['email'].'</td>
-                                                <td>
-                                                    <div class="centralize">
-                                                        <form action="pendaftar_action.php" method="post" target="hidden-frame">
-                                                            <input type="hidden" name="Userid" value="'.$data['token'].'">
-                                                            <button type= "submit" class="btn-acc" name="acc" onclick="'."return confirm('Anda Yakin Menerima --> ".$data['name']."?')".'"> Accept </button>
-                                                            <button type= "submit" class="btn-rej" name="rej" onclick="'."return confirm('Anda Yakin Menolak --> ".$data['name']."?')".'"> Reject </button>
-                                                        </form>
-                                                    </div>
+                                                <td class="no-border" style="text-align:center;"><img src="images/pp.png" alt="pp" class="avatar"></td>
+                                                <td class="no-border" style="vertical-align:middle;"><a href="profile.php?uid='.$data['token'].'">'.$data['name'].'</a></td>
+                                                <td class="no-border" style="vertical-align:middle;">FTI</td>
+                                                <td class="no-border" style="vertical-align:middle;">'.$data['prody'].'</td>
+                                                <td class="no-border" style="vertical-align:middle;">'.$data['npm'].'</td>
+                                                <td class="no-border" style="vertical-align:middle;">'.$data['email'].'</td>
+                                                <td class="no-border" style="vertical-align:middle;">
+                                                    '.$data['role'].'
                                                 </td>
                                             </tr>
                                         ';
                                         $no++;
                                     }
                                 }
+                                
+                                
                             ?>
                         </table>
+                        <?php
+                        echo' <div class="pagination">';
+                            for($i=1; $i<=$pages; $i++){
+                                
+                                //<a href="#">&laquo;</a>
+                                if($i == $page){
+                                    echo '<a href="?page='.$i.'" class="active">'.$i.'</a>';
+                                }else{
+                                    echo '<a href="?page='.$i.'">'.$i.'</a>';
+                                }
+                                //<a href="#">&raquo;</a>
+                                        
+                            }
+                        echo'</div> ';
+                        ?>
+                        
                     </div>
                 </div>
             </div>
