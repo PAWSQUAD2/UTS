@@ -25,14 +25,16 @@
             $headers = "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($email, 'Email Verification - KSR Dashboard', '<h3>Terima Kasih!!</h3>
             <p style="color:red;font-size:20px;">Terima kasih anda telah mendaftar KSR. Mohon aktivasi email anda dibawah ini dan tunggu hingga pendaftaran anda dire-view oleh admin</p>
-            Please Click Link Below : <a href="127.0.0.1/paw/UTS/verify.php?token='.$token.'">---KLIK DISINI---</a>
-            <p style="color:red;font-size:20px;">Atau Anda dapat membuka 127.0.0.1/paw/UTS/verify.php kemudian masukkan token = '.$token.' Anda untuk verifikasi email.</p>', $headers);
+            Please Click Link Below : <a href="http://ksriotdemo.000webhostapp.com/verify.php?token='.$token.'">---KLIK DISINI---</a>
+            <p style="color:red;font-size:20px;">Atau Anda dapat membuka http://ksriotdemo.000webhostapp.com/paw/UTS/verify.php kemudian masukkan token = '.$token.' Anda untuk verifikasi email.</p>', $headers);
         }else{
             header("Location: daftar_hasil.php?result=no");
         }
+        
         $query = "INSERT INTO users(token, name, email, password, prody, npm, birthday, bornplace, phone)
         VALUES (UUID(),'$name','$email','$pass','$jurusan','$npm','$birthDay','$bornPlace','$phone')";
         $result = $con->query($query);
+        
         if($result){
             header("Location: daftar_hasil.php?result=ok");
         }else{

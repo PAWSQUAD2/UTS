@@ -4,6 +4,7 @@
     border-width: 2px;
     border-radius: 10px;
     padding: 20px;
+    
 }
 
 .heder-card-view{
@@ -90,7 +91,9 @@
     padding: 0 10px;
 }
 .al-col{
-    padding: 0 10px
+    padding: 0 10px;
+    min-width :300px;
+    margin: 0 auto;
 }
 .al{
     width: 24.9999%
@@ -123,6 +126,20 @@
     overflow: hidden;
     color: gainsboro;
 }
+.my-auto {
+    min-width: 400px;
+    margin: 0 auto;
+}
+@media (max-width: 1200px) {
+    .my-auto {
+        min-width: 100% !important;
+        margin: 0;
+    }
+    .card-view{
+        width: 100%;
+    }
+}
+
 .al-title {
     display: block;
     color: antiquewhite;

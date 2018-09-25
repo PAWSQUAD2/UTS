@@ -7,7 +7,7 @@ function session_init($b=0){//$b->true == redirect to login
     $result = mysqli_query($con, "SELECT * FROM setting WHERE id=1");
     $sec = mysqli_fetch_assoc($result)['timeout_sec'];
     if(isset($_SESSION['user'])){
-      $user = $_SESSION['user'];
+      $user = unserialize($_SESSION['user']);
       if((time()- $user->timeout)>$sec){
           logout(true);
       }else{
@@ -15,7 +15,7 @@ function session_init($b=0){//$b->true == redirect to login
       }
 
     }else{
-        if(b){
+        if($b){
             header("location: daftar.php");
         }else{
 

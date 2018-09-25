@@ -1,0 +1,12 @@
+.purple-blue {
+    /* background-image: linear-gradient(to right, #8234a7, rgb(167, 167, 25)) !important; */
+    background-image: linear-gradient(to bottom right, #ae4add, rgb(99, 97, 221));
+}
+.yellow-green {
+    /* background-image: linear-gradient(to right, #8234a7, rgb(167, 167, 25)) !important; */
+    background-image: linear-gradient(to bottom right, #a6ca43, rgb(85, 206, 131));
+}
+.yellow-orange {
+    /* background-image: linear-gradient(to right, #8234a7, rgb(167, 167, 25)) !important; */
+    background-image: linear-gradient(to bottom right, #c0be3e, rgb(245, 184, 104));
+}

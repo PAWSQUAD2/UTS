@@ -1,3 +1,14 @@
+<?php
+  include_once 'user.php';
+  include_once 'session.php';
+  session_init();
+  if(isset($_SESSION['user'])){
+    unserialize($_SESSION['user'])->updateTimeout();
+  }else{
+
+  }
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,27 +18,18 @@
     <title>DASHBOARD KSR</title>
     <!-- Bootstrap -->
 	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
-    <link href="css/main-responsive.css" rel="stylesheet">
+    <link href="css/main-responsive.css?version=20" rel="stylesheet">
     <link href="css/tambah-berita.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/TB.css">
-    <link href="css/index.css" type="text/css" rel="stylesheet">
+    <link href="css/index.css?version=20" type="text/css" rel="stylesheet">
     <link rel="shortcut icon" href="images/icon1.ico">
-    <?php
-    include_once 'user.php';
-    session_start();
-    if(isset($_SESSION['user'])){
-      $_SESSION['user']->updateTimeout();
-    }else{
-
-    }
     
-    ?>
   </head>
   <body style="padding-top: 65px">
   	<!-- body code goes here -->
-  <div class="container-fluid">
+  <div class="container-fluid min_width">
       <nav class="navbar mNav fixed-top navbar-expand-lg navbar-light bg-light"> 
         <a class="logo"><img src="images/emblen.jpg"/></a>
         <a class="navbar-brand" href="index.php">KSR</a>
@@ -47,10 +49,10 @@
               
               <?php
               if(isset($_SESSION['user'])){
-                $user = $_SESSION['user'];
+                $user = unserialize($_SESSION['user']);
                 echo '<li class="nav-item dropdown" style="margin:0; padding:0;"><a style="margin:0; padding: 0;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               <div class="navbar-profile navbar-nav color-lightTheme mr-auto" style="display:inline;">
-                                                <img class="avatar" src="images/img_avatar.png" alt="avatar"/>
+                                                <img class="avatar" src="'.($user->photoUrl? $user->photoUrl : "images/pp.png").'" alt="avatar"/>
                                                 <span class="name">'.$user->name.'</span>
                                               </div> 
                                             </a>
@@ -137,7 +139,7 @@
         </div>					
     </div>
     <!-- Page content -->
-    <div class="body" style="max-height:1250px; background-color: rgb(64, 67, 68); overflow: hidden;">
+    <div class="body" style="max-height:1000px; background-color: rgb(64, 67, 68); overflow: auto;">
       <!-- Page content 2-->
       <div class=" col-xl-12" >
           <!-- Project Section -->
@@ -149,12 +151,15 @@
           <?php
             include_once 'koneksi.php';
             $con = konek();
-            $result = $con->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT 6");
+            $setting = $con->query("SELECT * FROM setting");
+            $data = mysqli_fetch_assoc($setting);
+            $limit = $data['total_berita'];
+            $result = $con->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT $limit");
             while($data = mysqli_fetch_assoc($result)){
               echo '<div class="al-col al al-m al-margin-bottom">
             <div class="al-display-container">
               <div class="al-display-topleft al-black al-padding">'.$data['kategori'].'</div>
-              <img src="'.$data['photoUrl'].'" alt="'.$data['kategori'].'" style="width:100%; max-width:300px;" >
+              <img src="'.$data['photoUrl'].'" alt="'.$data['kategori'].'" style="width:100%; max-width:300px; max-height:200px;" >
               <a class="al-title color-lightTheme bold" href="berita.php?id='.$data['id'].'">'.$data['judul'].'</a>
               <p class="al-caption color-lightTheme" max-lines="5">'.$data['isi'].'</p>
             </div>

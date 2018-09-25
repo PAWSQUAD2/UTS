@@ -1,0 +1,35 @@
+
+.container{
+    width: 30%;
+    position:absolute;
+    top:35%;
+    left:35%;
+    padding: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.hidup{
+    display: block;
+    width: 80%;
+    height: 50px;
+    background-color: #5ebd56;
+    border: 1px solid green;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+}
+.mati{
+    
+    display: block;
+    width: 80%;
+    height: 50px;
+    background-color: #bd5656;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.mati:hover, .hidup:hover{
+    background-color: white;
+}
